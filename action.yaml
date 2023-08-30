@@ -21,6 +21,10 @@ inputs:
   password:
     required: false
     default: ''
+  branch:
+    description: name of the branch to be checked out. main is default branch.
+    required: false
+    default: 'main'
 
 runs:
   using: 'composite'
@@ -34,6 +38,6 @@ runs:
     - name: Clone repository
       shell: bash
       run: |
-        git clone https://${{ inputs.username }}:${{ inputs.token }}@${{ inputs.repo_url }}
+        git clone -b ${{ inputs.branch }} https://${{ inputs.username }}:${{ inputs.token }}@${{ inputs.repo_url }}
 
   
